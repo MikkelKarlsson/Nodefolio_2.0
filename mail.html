@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mail</title>
+</head>
+<body>
+  <div id="contact" class="form-container text-center my-5">
+    <h3 class="mb-5">Contact</h3>
+    <div class="row h-25">
+        <div class="col-lg-6">
+            <form action="/sendMail " method="POST" id="contactForm" class="contact form">
+                <input type="text" name="name" placeholder="Full Name"><br>
+                <input type="email" name="email" placeholder="Email"><br>
+                <input type="text" name="subject" placeholder="Subject"><br>
+                <textarea type="text" name="message" placeholder="Message" cols="30" rows="10"></textarea><br>
+                <input type="submit" class="submit" value="Send Message">
+            </form>
+        </div>
+</body>
+</html>
