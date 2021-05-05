@@ -7,23 +7,25 @@ const app = express();
 //Define port
 const port = 8080;
 
-//Listenen to the port
-app.listen(port, (error) => {
-    if(error) {
-        console.log(error);
-    }
-    console.log("Server is running on port", port);
-});
+app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const fs = require("fs");
+
+const index = fs.readFileSync(__dirname + "/index.html", "utf-8");
+const mail = fs.readFileSync(__dirname + "/mail.html", "utf-8");
+
 
 //API
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html")
+    res.send(index)
 });
 
 app.get("/mail", (req, res) => {
-    res.sendFile(__dirname + "/mail.html")
-}) 
+    res.send(mail)
+}); 
 
 //Nodemailer
 const nodemailer = require('nodemailer');
@@ -51,7 +53,7 @@ function sendMail(mail) {
         } else {
             console.log("Email Sent: " + info.response);
         }
-    })
+    });
 }
 
 app.post("/sendMail", (req, res) => {
@@ -64,4 +66,12 @@ app.post("/sendMail", (req, res) => {
     console.log(mail);
     sendMail(mail)
     res.redirect("/")
-})
+});
+
+//Listenen to the port
+app.listen(port, (error) => {
+    if(error) {
+        console.log(error);
+    }
+    console.log("Server is running on port", port);
+});
