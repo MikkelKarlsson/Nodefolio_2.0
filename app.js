@@ -7,6 +7,8 @@ const app = express();
 //Define port
 const port = 8080;
 
+// SSR
+
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
